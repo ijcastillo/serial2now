@@ -7,7 +7,7 @@
 #define NACK 				0x07U
 #define TERMINADOR_MSG		0x10U
 
-#define LEDSTATUS           0x20U   // fuerza encendido o apagado del led
+#define LED_ON              0x20U   // fuerza encendido o apagado del led
 
 void processComms(void);
 void configSerial(const uint8_t _ledPin);

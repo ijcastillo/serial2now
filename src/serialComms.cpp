@@ -6,7 +6,7 @@ uint8_t ledPin;
 
 enum Instrucciones { 
     none =      0,
-    ledStatus = LEDSTATUS,
+    ledOn =     LED_ON,
     test =      TEST
 }; 
 Instrucciones instr_en_curso = none;
@@ -30,7 +30,7 @@ void processComms(void)
             instr_en_curso = none;
             Serial.write(ACK);
             break;
-        case LEDSTATUS:
+        case LED_ON:
             if (Serial.available()) { // nos falta un byte para ejecutar la instrucción
                 Serial.readBytes(rxBuff, 1);     
                 digitalWrite(ledPin, rxBuff[0]);
