@@ -15,8 +15,6 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   configSerial(LED_PIN);
   initEspnow();
-
-  // WiFi.mode(WIFI_STA); // TODO poner lo que corresponda
 }
 
 void loop() {

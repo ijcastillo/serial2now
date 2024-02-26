@@ -2,6 +2,8 @@
 #include "serialComms.h"
 #include "espnow.h"
 
+#include <WiFi.h>       // TODO quitar esto
+
 uint8_t rxBuff[130];    // buffer de recepción serial
 uint8_t ledPin;
 
@@ -9,7 +11,8 @@ enum Instrucciones {
     none =      0,
     ledOn =     LED_ON,
     test =      TEST,
-    getMAC =    GET_MAC
+    getMAC =    GET_MAC,
+    getAPMAC =  GET_APMAC
 }; 
 Instrucciones instr_en_curso = none;
 
@@ -32,6 +35,7 @@ void processComms(void)
             instr_en_curso = none;
             Serial.write(ACK);
             break;
+
         case LED_ON:
             if (Serial.available()) { // nos falta un byte para ejecutar la instrucción
                 Serial.readBytes(rxBuff, 1);     
@@ -40,10 +44,16 @@ void processComms(void)
                 Serial.write(ACK);
             }
             break;
+
         case GET_MAC:     
             instr_en_curso = none;
             Serial.write(getMac(), 6);
             break;
+
+        case GET_APMAC:     
+            instr_en_curso = none;
+            Serial.write(getApMac(), 6);
+            break;        
 
         default:
             /* opcode desconocido */

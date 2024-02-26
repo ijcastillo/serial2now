@@ -9,7 +9,8 @@
 
 #define LED_ON              0x20U   // fuerza encendido o apagado del led
 
-#define GET_MAC             0x30U   // devuelve la MAC del dispositivo bridge serial-now
+#define GET_MAC             0x30U   // devuelve la MAC station del dispositivo 
+#define GET_APMAC           0x31U   // devuelve la MAC access point del dispositivo
 
 
 void processComms();
