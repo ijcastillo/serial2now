@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "serialComms.h"
+#include "espnow.h"
 
 uint8_t rxBuff[130];    // buffer de recepción serial
 uint8_t ledPin;
@@ -7,7 +8,8 @@ uint8_t ledPin;
 enum Instrucciones { 
     none =      0,
     ledOn =     LED_ON,
-    test =      TEST
+    test =      TEST,
+    getMAC =    GET_MAC
 }; 
 Instrucciones instr_en_curso = none;
 
@@ -38,6 +40,11 @@ void processComms(void)
                 Serial.write(ACK);
             }
             break;
+        case GET_MAC:     
+            instr_en_curso = none;
+            Serial.write(getMac(), 6);
+            break;
+
         default:
             /* opcode desconocido */
             Serial.write(NACK);

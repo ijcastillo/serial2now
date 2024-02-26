@@ -9,7 +9,10 @@
 
 #define LED_ON              0x20U   // fuerza encendido o apagado del led
 
-void processComms(void);
+#define GET_MAC             0x30U   // devuelve la MAC del dispositivo bridge serial-now
+
+
+void processComms();
 void configSerial(const uint8_t _ledPin);
 
 #endif  // define SERIAL_COMMS_H
