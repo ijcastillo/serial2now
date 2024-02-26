@@ -14,7 +14,7 @@ void setup() {
   Serial.begin(115200);
   pinMode(LED_PIN, OUTPUT);
   configSerial(LED_PIN);
-  initEspnow();
+  configEspnow();
 }
 
 void loop() {

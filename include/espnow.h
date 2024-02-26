@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-void initEspnow();
+void configEspnow();
 uint8_t* getMac();
 uint8_t* getApMac();
 
