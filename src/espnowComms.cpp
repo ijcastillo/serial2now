@@ -8,7 +8,7 @@
 
 #include <WiFi.h>
 #include "serialComms.h"
-#include "espnow.h"
+#include "espnowComms.h"
 #include <esp_now.h>
 
 uint8_t macDir[6] =   {0x00}; // dirección mac station de este dispositivo
