@@ -10,10 +10,14 @@
 
 #define LED_PIN 8  // Pin del LED en la placa bridge serial-now
 
-extern Role role;  // se actualiza desde serialComms
+extern Role role;           // se actualiza desde serialComms
+uint8_t macDir[6];          // extern en espnowComms, se actualiza allí
+uint8_t macApDir[6];        // extern en espnowComms, se actualiza allí
 
 void setup() {
   role = device;
+  macDir[6] =   {0x00};
+  macApDir[6] = {0x00};
   Serial.begin(115200);
   pinMode(LED_PIN, OUTPUT);
   configSerial(LED_PIN);

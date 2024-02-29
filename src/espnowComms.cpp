@@ -11,13 +11,14 @@
 #include "espnowComms.h"
 #include <esp_now.h>
 
-uint8_t macDir[6] =   {0x00}; // dirección mac station de este dispositivo
-uint8_t macApDir[6] = {0x00}; // dirección mac access point de este dispositivo
-
 void configEspnow() {
-    WiFi.mode(WIFI_AP_STA);
-    memcpy(macDir, WiFi.macAddress(macDir), 6);           // dirección station mac de este dispositivo
-    memcpy(macApDir, WiFi.softAPmacAddress(macApDir), 6); // dirección Access Point mac de este dispositivo
+    WiFi.mode(WIFI_STA);    //
+    /* dirección station mac de este dispositivo */
+    memcpy(macDir, WiFi.macAddress(macDir), 6);  
+    
+    /* dirección Access Point mac de este dispositivo, esta dirección sólo estará
+       disponible si WiFi.mode( ) incluye Access Point */ 
+    memcpy(macApDir, WiFi.softAPmacAddress(macApDir), 6);
 }
 
 uint8_t* getMac() {

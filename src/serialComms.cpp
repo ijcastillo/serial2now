@@ -2,14 +2,12 @@
 #include "serialComms.h"
 #include "espnowComms.h"
 
-#include <WiFi.h>       // TODO quitar esto
-
 uint8_t rxBuff[130];    // buffer de recepción serial
 uint8_t ledPin;
 
 Role role = device;     // extern en main.cpp
 
-enum Instrucciones { 
+enum Instrucciones {    // TODO quitar esta enumeración??
     none =      0,
     ledOn =     LED_ON,
     test =      TEST,
