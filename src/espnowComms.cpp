@@ -13,7 +13,9 @@
 
 #define MAX_PEERS       20  // Máximo número de pares a registrar
 
-/* Códigos para el byte options1 para comunicaciones por esp-now */
+/*
+*   Códigos para el byte options1 para comunicaciones por esp-now
+*/
 #define HELLO           24  // código enviado por broadcast por los dispositivos para solicitar emparejamiento al gateway
 #define HELLO_RESP      30  // código enviado por el gateway al dispositivo que ha enviado hellow
 #define REQUEST_PAIRS   40  // código de envío de los pares registrados al dispositivo remoto
@@ -31,7 +33,6 @@ struct espnowMsgRaw {
 } receivedRaw, sendRaw;
 
 const uint8_t broadcastAddr[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF}; // dejar esta
-// const uint8_t broadcastAddr[] = {0xEC, 0xDA, 0x3B, 0x36, 0x45, 0x08};   // MAC del blanco, COM16
 
 uint8_t peerAddresses[MAX_PEERS][6];    // MACs de los pares registrados
 

@@ -31,7 +31,7 @@ static void espnowConnect(void *argp)
         switch (role) {
             case device:
                 if (!gwLocated) {
-                    hello();    // buscamos al gateway
+                    hello();        // buscamos al gateway
                     ledStatus ^= 1; // si no tenemos gateway, el led parpadea
                     digitalWrite(LED_PIN, ledStatus);
                 }

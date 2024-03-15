@@ -1,7 +1,9 @@
 #ifndef SERIAL_COMMS_H
 #define SERIAL_COMMS_H
 
-/* Definición de los opcodes usados en la comunicación serial */
+/* 
+*   Definición de los opcodes usados en la comunicación serial
+*/
 #define TEST 				0x05U
 #define ACK 				0x06U
 #define NACK 				0x07U

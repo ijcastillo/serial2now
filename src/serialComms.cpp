@@ -63,13 +63,30 @@ void processComms(void)
             uint8_t *pairList;
             instr_en_curso = none;
             /* enviamos un array donde el 1er elemento será el número de pares y después vendrá un listado de sus MACs */
-            Serial.write(getPairs(), 1+6*(*getPairs())); // TODO poner lo que corresponda
+            Serial.write(getPairs(), 1+6*(*getPairs()));
             break;
 
         case GET_APMAC:     
             instr_en_curso = none;
             Serial.write(getApMac(), 6);
-            break;        
+            break;      
+
+        case GET_GW_MAC:
+            instr_en_curso = none;
+            switch (role)
+            {
+                case device:
+                    /* Devolveremos la MAC del gateway o todo ceros si no tenemos */
+                    Serial.write(macGwDir, 6);
+                    break;
+                
+                case gateway:
+                    /* Si somos gateway devolvemos 6 bytes con todos unos */
+                    const uint8_t allOnes[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+                    Serial.write(allOnes, 6);
+                    break;
+            }
+            break; 
 
         default:
             /* opcode desconocido */
