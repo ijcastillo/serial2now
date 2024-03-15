@@ -5,15 +5,14 @@
 uint8_t rxBuff[130];    // buffer de recepción serial
 uint8_t ledPin;
 
-Role role = device;     // extern en main.cpp
-
 enum Instrucciones {    // TODO quitar esta enumeración??
     none =      0,
-    ledOn =     LED_ON,
-    test =      TEST,
-    getMAC =    GET_MAC,
-    getAPMAC =  GET_APMAC,
-    setRole =   SET_ROLE
+    // ledOn =     LED_ON,
+    // test =      TEST,
+    // getMAC =    GET_MAC,
+    // getAPMAC =  GET_APMAC,
+    // setRole =   SET_ROLE,
+    // getPairs_ =  GET_PAIRS
 }; 
 Instrucciones instr_en_curso = none;
 
@@ -58,6 +57,13 @@ void processComms(void)
         case GET_MAC:     
             instr_en_curso = none;
             Serial.write(getMac(), 6);
+            break;
+        
+        case GET_PAIRS:
+            uint8_t *pairList;
+            instr_en_curso = none;
+            /* enviamos un array donde el 1er elemento será el número de pares y después vendrá un listado de sus MACs */
+            Serial.write(getPairs(), 1+6*(*getPairs())); // TODO poner lo que corresponda
             break;
 
         case GET_APMAC:     

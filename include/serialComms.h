@@ -11,8 +11,12 @@
 
 #define GET_MAC             0x30U   // devuelve la MAC station del dispositivo 
 #define GET_APMAC           0x31U   // devuelve la MAC access point del dispositivo
+#define GET_GW_MAC          0x32U   // devuelve la MAC del dispositivo gateway al que estamos conectados
+
 
 #define SET_ROLE            0x40U   // configura el rol del dispositivo
+#define GET_PAIRS           0x41U   // devuelve los pares registrados
+#define AD_PAIR             0x42U   // TODO añade un nuevo par para ser registrado registrado
 
 /*
 *   Role del dispositivo:
@@ -21,8 +25,10 @@
 */
 enum Role { 
     device =  0,  // dispositivo que se comunicará únicamente con el gateway
-    gateway       // gateway ESP-NOW  a serial
-}; 
+    gateway,      // gateway ESP-NOW  a serial
+};  
+
+extern Role role;
 
 void processComms();
 void configSerial(const uint8_t _ledPin);
