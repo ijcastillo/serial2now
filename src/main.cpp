@@ -1,9 +1,12 @@
 /*
 *   Pendiente:
-*       - mandar periódicamente hello si es device y no tiene registrado al gateway
 *       - controlar el led en función de los estados
 *       - por defecto la placa arranca como device, es necesario configurar el gateway por serial
+*       - verificar de forma periódoca el estado de la conectividad esp-now
 */
+
+/* TODO de vez en cuando se resetean, el GW pasa a device. Comprobar que una vez conectados no 
+están constantemente intercambiando mensajes */
 
 #include <Arduino.h>
 #include "serialComms.h"
@@ -14,8 +17,10 @@
 #define LED_PIN   8  // Pin del LED
 #define ESPNOW_CH 0  // canal ESP-NOW (0 a 14)
 
-/* variables declaradas extern en espnowComms, se actualizan allí */
+/* variables declaradas extern en serialComms, se actualizan allí */
 Role    role;           // papel que realiza este dispositivo: gateway, device...
+
+/* variables declaradas extern en espnowComms, se actualizan allí */
 uint8_t macDir[6] {};   // MAC de este dispositivo
 uint8_t macApDir[6] {}; // MAC punto de acceso de este dispositivo. Sólo si el wifi es AP
 uint8_t macGwDir[6] {}; // MAC del gateway, sólo si este dispositivo es device

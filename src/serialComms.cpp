@@ -73,13 +73,11 @@ void processComms(void)
 
         case GET_GW_MAC:
             instr_en_curso = none;
-            switch (role)
-            {
+            switch (role) {
                 case device:
                     /* Devolveremos la MAC del gateway o todo ceros si no tenemos */
                     Serial.write(macGwDir, 6);
-                    break;
-                
+                    break;                
                 case gateway:
                     /* Si somos gateway devolvemos 6 bytes con todos unos */
                     const uint8_t allOnes[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
@@ -91,9 +89,7 @@ void processComms(void)
         default:
             /* opcode desconocido */
             Serial.write(NACK);
-                    // Serial.write(instr_en_curso);
             instr_en_curso = none;
-            break;
         }
     }
 }
